@@ -1,9 +1,11 @@
-/* Enter your solutions in this file */
 #include <stdio.h>
 #include <assert.h>
 
 
 int max(int [], int);
+int min(int [], int);
+float average(int [], int);
+int mode(int [], int);
 
 int main(void) {
   int x[] = {9,5,6,10,2,-3,4};
@@ -12,6 +14,43 @@ int main(void) {
   int y[] = {5};
   assert (max(y, 1) == 5);
   printf("Max: passed\n");
+  
+  assert (min(x, 7) == -3);
+
+ 
+  assert (min(y, 1) == 5);
+  printf("Min: passed\n");
+
+  
+  assert ((average(x, 7) - 4.7142) < 0.001);
+
+  
+  assert (average(y, 1) == 5.0);
+  printf("Average: passed\n");
+
+  int z[] = {4, 9,5,6,5,10,0,2,-3, -3,4, 4};
+  assert ((mode(z, 12) == 4));
+
+  
+  assert (mode(y, 1) == 5);
+  printf("Mode: passed\n");
+
+
+  int ret[100] = {0};
+  int count = factors(180, ret);
+  assert (count == 5);
+  assert (ret[0] == 2);
+  assert (ret[1] == 2);
+  assert (ret[2] == 3);
+  assert (ret[3] == 3);
+  assert (ret[4] == 5);
+
+
+  count = factors(143, ret);
+  assert (count == 2);
+  assert (ret[0] == 11);
+  assert (ret[1] == 13);
+  printf("Factors: passed\n");
   }
 
 int max(int array[], int n)
@@ -27,22 +66,6 @@ x=array[i];
 return x;
 }
 
-
-#include <stdio.h>
-#include <assert.h>
-
-
-int min(int [], int);
-
-int main(void) {
-  int x[] = {9,5,6,10,2,-3,4};
-  assert (min(x, 7) == -3);
-
-  int y[] = {5};
-  assert (min(y, 1) == 5);
-  printf("Min: passed\n");
-  }
-
 int min(int array[],int n)
 {
 int x=array[0]+1;
@@ -56,20 +79,6 @@ x=array[i];
 return x;
 }
 
-
-
-
-float average(int [], int);
-
-int main(void) {
-  int x[] = {9,5,6,10,2,-3,4};
-  assert ((average(x, 7) - 4.7142) < 0.001);
-
-  int y[] = {5};
-  assert (average(y, 1) == 5.0);
-  printf("Average: passed\n");
-  }
-
 float average(int array[],int n)
 {
 float x=0;
@@ -80,20 +89,6 @@ x=x+array[i];
 x=x/n;
 return x;
 }
-
-
-
-
-int mode(int [], int);
-
-int main(void) {
-  int x[] = {4, 9,5,6,5,10,0,2,-3, -3,4, 4};
-  assert ((mode(x, 12) == 4));
-
-  int y[] = {5};
-  assert (mode(y, 1) == 5);
-  printf("Mode: passed\n");
-  }
 
 int mode(int array[],int n)
 {
@@ -146,17 +141,18 @@ int mode(int array[],int n)
 }
 
 
-
-int main()
+int factors(int n,int sol[])
 {
-int n=400;
+//int n=400;
 int c=0;
 int array[n];
+int arr[n];
 int k=0;
     
     for(int i=0;i<n;i++)
     {
         array[i]=0;
+        arr[i]=0;
     }
 
 
@@ -182,12 +178,52 @@ int k=0;
          
     }
 
-for(int i=0;i<n;i++)
+                                                    
+    
+    int z;
+    z=n;
+    for(int i=0;i<z;i++)
+    {
+        for(int j=0;j<z;j++)
+        {
+            if(array[j]!=0)
+            {
+                if(n%array[j]==0) 
+                {
+                    n=n/array[j];
+                    arr[i]=array[j];
+                    break;
+                }
+            }
+        }
+    }
+                    
+
+
+
+
+
+
+
+
+                                          
+int l=0;
+for(int i=0;i<z;i++)
 {
-printf("%d\n",array[i]);
+if(arr[i]==0)
+{
+l=i;
+break;
 }
 }
 
 
+for(int i=0;i<l;i++)
+{
+sol[i]=arr[i];
+}
+                                           
 
+return l;
+}
 
