@@ -56,8 +56,7 @@ x=array[i];
 return x;
 }
 
-#include <stdio.h>
-#include <assert.h>
+
 
 
 float average(int [], int);
@@ -82,8 +81,7 @@ x=x/n;
 return x;
 }
 
-#include <stdio.h>
-#include <assert.h>
+
 
 
 int mode(int [], int);
@@ -148,7 +146,7 @@ int mode(int array[],int n)
 }
 
 
-#include <stdio.h>
+
 int main()
 {
 int n=400;
