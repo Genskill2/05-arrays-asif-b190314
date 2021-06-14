@@ -1,26 +1,92 @@
 #include <stdio.h>
-#include <assert.h>
 
-
-int factors(int, int []);
-
-int main(void) {
-  int ret[100] = {0};
-  int count = factors(180, ret);
-  assert (count == 5);
-  assert (ret[0] == 2);
-  assert (ret[1] == 2);
-  assert (ret[2] == 3);
-  assert (ret[3] == 3);
-  assert (ret[4] == 5);
-
-
-  count = factors(143, ret);
-  assert (count == 2);
-  assert (ret[0] == 11);
-  assert (ret[1] == 13);
-  printf("Factors: passed\n");
+int max(int array[], int n)
+{
+int x=array[0]-1;
+for(int i=0;i<n;i++)
+{
+if(array[i]>x)
+{
+x=array[i];
 }
+}
+return x;
+}
+
+int min(int array[],int n)
+{
+int x=array[0]+1;
+for(int i=0;i<n;i++)
+{
+if(array[i]<x)
+{
+x=array[i];
+}
+}
+return x;
+}
+
+float average(int array[],int n)
+{
+float x=0;
+for(int i=0;i<n;i++)
+{
+x=x+array[i];
+}
+x=x/n;
+return x;
+}
+
+int mode(int array[],int n)
+{
+        int min=array[0]+1;
+        int max=array[0]-1;
+        for(int i=0;i<n;i++)
+        { if(array[i]>max){max=array[i];}
+          if(array[i]<min){min=array[i];}
+                                            }
+                                                                    
+        int a=max-min+1;
+                                                                    
+        int array2[a];
+        for(int i=0;i<a;i++)
+        {array2[i]=min+i;}
+                                                                    
+                                                                     
+        int array3[a];
+        for(int i=0;i<a;i++)
+        {array3[i]=0;}
+        
+
+        for(int i=0;i<a;i++)
+        {
+        for(int j=0;j<a;j++)
+        {
+        if(array[j]==array2[i])
+        {
+        array3[i]=array3[i]+1;
+        }}}
+                                                                    
+
+        int maximum=0;
+        int z=0;
+        for(int i=0;i<a;i++)
+        {
+        if(array3[i]>maximum)
+        {
+        maximum=array3[i];
+        z=i;
+        }}
+                                                                    
+        int y=array2[z];
+        return y;
+        
+
+
+
+
+}
+
 
 int factors(int n,int sol[])
 {
@@ -107,3 +173,4 @@ sol[i]=arr[i];
 
 return l;
 }
+
